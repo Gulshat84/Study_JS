@@ -1,18 +1,34 @@
-alert("Hello, friends!");
-
 console.log("Hello!");
 
 let agePerson = 20;
 console.log(agePerson);
 
-let money;
+// Доход за месяц
+let money = 30000;
+console.log(typeof money);
 
-let income;
+// Дополнительный доход
+let income = 'Фриланс';
+console.log(typeof income);
 
-let addExpenses;
+// Дополнительные расходы
+let addExpenses = 'Интернет Такси Коммуналка';
+console.log(addExpenses.length);
+console.log(addExpenses.toLowerCase());
+console.log(addExpenses.split(' '));
 
-let deposit;
+// Булевое значение
+let deposit = true;
+console.log(typeof deposit);
 
-let mission;
+// Желаемая сумма накопления
+let mission = 5000000;
+console.log('Цель заработать' + ' ' + mission + ' ' + 'рублей');
 
-let period;
+// Период от 1 до 12 месяцев
+let period = 6;
+console.log('Период равен' + ' ' + period + ' ' + 'месяцев');
+
+// Дневной бюджет
+let budgetDay = money / 30;
+console.log(budgetDay);
