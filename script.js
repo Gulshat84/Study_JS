@@ -37,12 +37,15 @@ let appData = {
       let itemIncome;
       let cashIncome;
       for (let i = 0; i < 2; i++) {
-        itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
+        do {
+          itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
+        }
+        while (isNumber(itemIncome) || itemIncome.trim() === '' || itemIncome === null);        
 
         do {
           cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000);
         }
-        while (isNaN(cashIncome) || cashIncome === '' || cashIncome === null);
+        while (isNaN(cashIncome) || cashIncome.trim() === '' || cashIncome === null);
 
         appData.income[itemIncome] = cashIncome;
       }      
@@ -50,15 +53,21 @@ let appData = {
     }
     
     let addExpenses = prompt('Перечислите возможные расходы через запятую');
-        appData.addExpenses = addExpenses.toUpperCase().split(', ');
-
+    appData.addExpenses = addExpenses.toLowerCase().split(',');
+        
         for (let i = 0; i < 2; i++) {
-          let itemExpenses = prompt('Введите обязательную статью расходов', 'например: садик частный');
+          let itemExpenses;
           let cashExpenses;
+
+          do {
+            itemExpenses= prompt('Введите обязательную статью расходов', 'например: садик частный');
+          }
+          while (isNumber(itemExpenses) || itemExpenses.trim() === '' || itemExpenses === null);
+          
           do {
             cashExpenses = prompt('Во сколько это обойдётся?, 2500');
           }
-          while (isNaN(cashExpenses) || cashExpenses === '' || cashExpenses === null);
+          while (isNaN(cashExpenses) || cashExpenses.trim() === '' || cashExpenses === null);
           
           appData.expenses[itemExpenses] = cashExpenses;
         }
@@ -67,9 +76,11 @@ let appData = {
   },
 
   getExpensesMonth: function() {
+    
     for (let key in appData.expenses) {
       appData.expensesMonth += +appData.expenses[key];
     }    
+    console.log(appData.addExpenses.join(', '));
      
   },
 
@@ -139,6 +150,63 @@ for (let key in appData) {
 }
 
 console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSavedMoney());
+
+let calculation = document.getElementById('#start');
+console.log(calculation);
+
+let incomeAdd = document.getElementsByTagName('button')[0];
+console.log(incomeAdd);
+
+let expensesAdd = document.getElementsByTagName('button')[1];
+console.log(expensesAdd);
+
+let checkbox = document.querySelector('#deposit-check');
+console.log(checkbox);
+
+let additionalIncomeItem = document.querySelectorAll('.additional_income-item');
+console.log(additionalIncomeItem);
+
+let budgetDayValue = document.getElementsByClassName('budget_day-value');
+console.log(budgetDayValue);
+
+let expensesMonthValue = document.getElementsByClassName('expenses_month-value');
+console.log(expensesMonthValue);
+
+let additionalIncomeValue = document.getElementsByClassName('additional_income-value');
+console.log(additionalIncomeValue);
+
+let additionalExpensesValue = document.getElementsByClassName('additional_expenses-value');
+console.log(additionalExpensesValue);
+
+let incomePeriodValue = document.getElementsByClassName('income_period-value');
+console.log(incomePeriodValue);
+
+let targetMonthValue = document.getElementsByClassName('target_month-value');
+console.log(targetMonthValue);
+
+let budgetMonthValue = document.querySelector('.budget_month-value');
+console.log(budgetMonthValue);
+
+let salaryAmount = document.querySelector('.salary-amount');
+console.log(salaryAmount);
+
+let incomeTitle = document.querySelector('.income-title');
+console.log(incomeTitle);
+
+let incomeAmount = document.querySelector('.income-amount');
+console.log(incomeAmount);
+
+let expensesTitle = document.querySelector('.expenses-title');
+console.log(expensesTitle);
+
+let expensesAmount = document.querySelector('.expenses-amount');
+console.log(expensesAmount);
+
+let additionalExpensesItem = document.querySelector('.additional_expenses-item');
+console.log(additionalExpensesItem);
+
+let periodSelect = document.querySelector('.period-select');
+console.log(periodSelect);
 
 
 //console.log('Накопления за месяц:' + appData.accumulatedMonth);
